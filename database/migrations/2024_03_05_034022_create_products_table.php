@@ -7,14 +7,16 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     public function up()
-    {
-        Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->nullable();
-            $table->enum('type', ['string', 'date', 'float'])->nullable();
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('products', function (Blueprint $table) {
+        $table->id();
+        $table->string('name')->nullable();
+        $table->enum('type', ['string', 'date', 'float'])->nullable();
+        $table->unsignedInteger('length')->nullable();
+        $table->timestamps();
+    });
+}
+
     public function down()
     {
         Schema::dropIfExists('products');

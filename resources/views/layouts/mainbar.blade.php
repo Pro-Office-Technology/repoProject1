@@ -2,7 +2,7 @@
 <nav class="pcoded-navbar theme-horizontal">
     <div class="navbar-wrapper">
         <div class="navbar-brand header-logo">
-            <a href="index.html" class="b-brand">
+            <a href="{{ route('dashboard') }}" class="nav-link">
                 <div class="b-bg">E</div>
                 <span class="b-title">Elite Able</span>
             </a>
@@ -14,7 +14,7 @@
                     <label>Navigation</label>
                 </li>
                 <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" class="nav-item active">
-                    <a href="index.html" class="nav-link">
+                    <a href="{{ route('dashboard') }}" class="nav-link">
                         <span class="pcoded-micon"><i class="feather icon-home"></i></span>
                         <span class="pcoded-mtext">Dashboard</span>
                     </a>
@@ -45,7 +45,7 @@
                     </ul>
                 </li>
                 <li data-username="Indexing" class="nav-item">
-                    <a href="../doc/index.html" class="nav-link" target="_blank">
+                    <a href="../doc/dashboard" class="nav-link" target="_blank">
                         <span class="pcoded-micon"><i class="feather icon-book"></i></span>
                         <span class="pcoded-mtext">Indexing</span>
                     </a>
@@ -54,6 +54,3 @@
         </div>
     </div>
 </nav>
-<!-- [ navigation menu ] end -->
-
-

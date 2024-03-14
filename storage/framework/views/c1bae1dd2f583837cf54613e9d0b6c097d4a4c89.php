@@ -1,7 +1,7 @@
 <header class="navbar pcoded-header navbar-expand-lg navbar-light">
     <div class="m-header">
         <!-- Elite Able logo -->
-        <a href="index.html" class="b-brand">
+        <a href="dashboard" class="b-brand">
             <div class="b-bg">
                 E
             </div>

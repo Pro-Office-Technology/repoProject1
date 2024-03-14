@@ -14,7 +14,7 @@ class ProductController extends Controller
 
         return view('products.index', ['data' => $product]);
     }
- //test
+
     public function add()
     {
         return view('products.form');
@@ -25,6 +25,7 @@ class ProductController extends Controller
         $data = [
             'name' => $request->name,
             'type' => $request->type,
+            'length' => $request->length,
 
         ];
         products::create($data);
@@ -45,6 +46,7 @@ class ProductController extends Controller
 
             'name' => $request->name,
             'type' => $request->type,
+            'length' => $request->length,
 
         ];
 

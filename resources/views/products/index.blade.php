@@ -18,19 +18,30 @@
             </div>
             <div class="col"></div>
         </div>
+        <div class="row mt-3">
+            <div class="col-md-6">
+                @if (auth()->user()->level == 'Admin')
+                <a href="{{ route('products.add') }}" class="btn btn-primary mb-3" style="color: #333;">Add</a>
+                @endif
+            </div>
+            <div class="col-md-6">
+                <div class="input-group mb-3">
+                    <input type="text" id="searchInput" class="form-control" placeholder="Search...">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="feather icon-search"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="card-body">
-        <div class="text-right">
-             @if (auth()->user()->level == 'Admin')
-            <a href="{{ route('products.add') }}" class="btn btn-primary mb-3" style="color: #333;">Add</a>
-            @endif
-        </div>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>Name</th>
                         <th>Type</th>
+                        <th>Length</th>
                         @if (auth()->user()->level == 'Admin')
                         <th>Action</th>
                         @endif
@@ -38,14 +49,15 @@
                 </thead>
                 <tbody>
                     @php($no = 1)
-                     @foreach ($data as $row)
+                    @foreach ($data as $row)
                     <tr>
                         <td>{{ $row->name }}</td>
                         <td>{{ $row->type }}</td>
+                        <td>{{ $row->length }}</td>
                         @if (auth()->user()->level == 'Admin')
                         <td>
                             <a href="{{ route('products.update', $row->id) }}" class="btn btn-warning">Edit</a>
-                             <a href="{{ route('products.delete', $row->id) }}" class="btn btn-danger">Delete</a>
+                            <a href="{{ route('products.delete', $row->id) }}" class="btn btn-danger">Delete</a>
                         </td>
                         @endif
                     </tr>
@@ -56,3 +68,19 @@
     </div>
 </div>
 
+@section('scripts')
+<!-- Include DataTables library -->
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Initialize DataTable
+        $('#dataTable').DataTable();
+
+        // Add search functionality
+        $('#searchInput').on('keyup', function() {
+            $('#dataTable').DataTable().search($(this).val()).draw();
+        });
+    });
+</script>
+@endsection

@@ -26,6 +26,11 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+
 
     Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
         Route::get('/', [ProductController::class, 'index'])->name('index');

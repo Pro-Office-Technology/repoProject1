@@ -46,23 +46,9 @@
     <!-- [ Navbar ] end -->
 
     <!-- [ Main Content ] start -->
-    <div class="pcoded-main-container">
-        <div class="pcoded-wrapper">
-            <div class="pcoded-content">
-                <div class="pcoded-inner-content">
-                    <div class="main-body">
-                        <div class="page-wrapper">
-                            <!-- [ Main Content ] start -->
-                            <div class="row">
-                                <!-- Content of the main page goes here -->
-                            </div>
-                            <!-- [ Main Content ] end -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- [ Main Content ] start -->
+
+						<!-- [ breadcrumb ] end -->
     <!-- [ Main Content ] end -->
 
     <!-- Required Js -->
