@@ -14,7 +14,7 @@ class ProductController extends Controller
 
         return view('products.index', ['data' => $product]);
     }
-
+ //test
     public function add()
     {
         return view('products.form');
