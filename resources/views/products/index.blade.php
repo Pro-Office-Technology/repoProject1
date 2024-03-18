@@ -77,10 +77,8 @@
         // Initialize DataTable
         $('#dataTable').DataTable();
 
-        // Add search functionality
-        $('#searchInput').on('keyup', function() {
-            $('#dataTable').DataTable().search($(this).val()).draw();
-        });
+
+    
     });
 </script>
 @endsection

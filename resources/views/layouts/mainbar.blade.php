@@ -29,20 +29,11 @@
                     </a>
                 </li>
                 <li data-username="Record type" class="nav-item pcoded-hasmenu">
-                    <a href="#!" class="nav-link">
+                    <a href="{{ route('records.index1') }}" class="nav-link">
                         <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
                         <span class="pcoded-mtext">Record type</span>
                     </a>
-                    <ul class="pcoded-submenu">
-                        <li class=""><a href="" class="">Record type 2.1</a></li>
-                        <li class="pcoded-hasmenu">
-                            <a href="#!" class="">Record type 2.2</a>
-                            <ul class="pcoded-submenu">
-                                <li class=""><a href="" class="">Record type 3.1</a></li>
-                                <li class=""><a href="" class="">Record type 3.2</a></li>
-                            </ul>
-                        </li>
-                    </ul>
+
                 </li>
                 <li data-username="Indexing" class="nav-item">
                     <a href="../doc/dashboard" class="nav-link" target="_blank">

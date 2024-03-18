@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\RecordController;
 use App\Http\Controllers\ProductController;
 
 
@@ -39,9 +39,12 @@ Route::middleware('auth')->group(function () {
         Route::get('edit/{id}', [ProductController::class, 'edit'])->name('edit');
         Route::post('edit/{id}', [ProductController::class, 'update'])->name('update');
         Route::get('delete/{id}', [ProductController::class, 'delete'])->name('delete');
+        });
 
-
-
-    });
+    Route::group(['prefix' => 'records', 'as' => 'records.'], function () {
+        Route::get('/', [RecordController::class, 'index'])->name('index1');
+        Route::get('/upload', [RecordController::class, 'upload'])->name('index');
+        Route::post('/upload', [RecordController::class, 'upload'])->name('index');
+         });
 
 });
