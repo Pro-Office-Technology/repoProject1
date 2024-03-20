@@ -14,5 +14,6 @@ class Records extends Model
     protected $fillable = [
         'file_path',
     ];
+
 }
 

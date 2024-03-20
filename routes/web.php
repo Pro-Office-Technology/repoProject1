@@ -43,8 +43,10 @@ Route::middleware('auth')->group(function () {
 
     Route::group(['prefix' => 'records', 'as' => 'records.'], function () {
         Route::get('/', [RecordController::class, 'index'])->name('index1');
-        Route::get('/upload', [RecordController::class, 'upload'])->name('index');
-        Route::post('/upload', [RecordController::class, 'upload'])->name('index');
-         });
+        Route::post('/', [RecordController::class, 'store']);
+        Route::get('/{id}', [RecordController::class, 'show'])->name('show');
+
+
+        });
 
 });

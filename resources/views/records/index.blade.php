@@ -20,13 +20,24 @@
         </div>
         <div class="row mt-3">
             <div class="col-md-6">
-                <div class="input-group mb-3">
-                    <input type="file" name="pdf_file" class="form-control">
-                    <div class="input-group-append">
-                        <button type="button" class="btn btn-primary">Upload</button>
-                        <button type="button" class="btn btn-success">View</button>
+                @if (session('success') && session('recordId'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('success') }}
                     </div>
-                </div>
+                    <div style="height: 50vh; overflow-y: scroll;">
+                        <iframe src="{{ route('records.show', session('recordId')) }}" width="100%" height="100%" frameborder="0"></iframe>
+                    </div>
+                @else
+                    <form action="{{ route('records.index1') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="input-group mb-3">
+                            <input type="file" name="pdf_file" class="form-control">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-primary">Upload</button>
+                            </div>
+                        </div>
+                    </form>
+                @endif
             </div>
             <div class="col-md-6">
                 <div class="table-responsive">
@@ -34,7 +45,7 @@
                         <thead>
                             <tr>
                                 <th>Choose Index Field to Use</th>
-                                <th></th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -42,14 +53,18 @@
                                 <td>
                                     <select class="form-control indexField">
                                         <option value="" disabled selected>Please choose index field to use</option>
-                                        <option value="Name">Name</option>
-                                        <option value="Date">Date</option>
+                                        @foreach($products as $id => $name)
+                                            <option value="{{ $id }}">{{ $name }}</option>
+                                        @endforeach
                                     </select>
+
                                     <div class="additionalFields" style="display: none;">
                                         <input type="text" class="form-control additionalInput" placeholder="Enter additional information">
                                     </div>
                                 </td>
                                 <td>
+                                    <button type="button" class="btn btn-primary saveButton">Save</button>
+                                    <button type="button" class="btn btn-warning editButton">Edit</button>
                                     <button type="button" class="btn btn-primary addButton">Add</button>
                                 </td>
                             </tr>
@@ -62,7 +77,6 @@
 </div>
 
 <script>
-
     function showAdditionalField() {
         var selectedOption = this.value;
         var additionalFields = this.parentNode.querySelector('.additionalFields');
@@ -77,22 +91,26 @@
         }
     }
 
-
     function addDropdown() {
         var newRow = document.createElement('tr');
         newRow.innerHTML = document.querySelector('.indexFieldRow').innerHTML;
         document.getElementById('indexFieldTable').appendChild(newRow);
-
-
         var newSelect = newRow.querySelector('.indexField');
-        var newButton = newRow.querySelector('.addButton');
+        var newSaveButton = newRow.querySelector('.saveButton');
+        var newEditButton = newRow.querySelector('.editButton');
         newSelect.addEventListener('change', showAdditionalField);
-        newButton.addEventListener('click', addDropdown);
-
-
+        newSaveButton.addEventListener('click', saveRow);
+        newEditButton.addEventListener('click', editRow);
         this.style.display = 'none';
     }
 
+    function saveRow() {
+        // Code to save the selected index field to use
+    }
+
+    function editRow() {
+        // Code to enable editing of the selected index field
+    }
 
     document.querySelector('.indexField').addEventListener('change', showAdditionalField);
     document.querySelector('.addButton').addEventListener('click', addDropdown);

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Records;
+use App\Models\products;
+
 class RecordController extends Controller
 {
     /**
@@ -13,9 +15,9 @@ class RecordController extends Controller
      */
     public function index()
     {
-        // $records = records::get();
-
-        return view('records.index');
+        $records = Records::all();
+        $products = products::pluck('name', 'id');
+        return view('records.index', compact('products'), compact('records'));
     }
 
     /**
@@ -25,18 +27,7 @@ class RecordController extends Controller
      */
     public function upload(Request $request)
     {
-        $request->validate([
-            'file' => 'required|file|mimes:pdf|max:10000',
-        ]);
-
-        $file = $request->file('file');
-        $path = $file->store('pdfs');
-
-        $record = new Records();
-        $record->file_path = $path;
-        $record->save();
-
-        return redirect()->back()->with('success', 'File uploaded successfully.');
+            //
     }
     /**
      * Store a newly created resource in storage.
@@ -45,9 +36,26 @@ class RecordController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+{
+    $this->validate($request, [
+        'pdf_file' => 'required|file|mimes:pdf|max:2048',
+    ]);
+
+    if ($request->hasFile('pdf_file')) {
+        $originalFileName = $request->file('pdf_file')->getClientOriginalName();
+        $fileName = time() . '_' . $originalFileName;
+        $request->file('pdf_file')->storeAs('public/records', $fileName);
+
+        $record = Records::create([
+            'file_path' => $fileName,
+        ]);
+
+        return redirect()->back()->with('success', 'PDF uploaded successfully!')->with('recordId', $record->id);
+    } else {
+        return redirect()->back()->withErrors(['error' => 'Please select a PDF file.']);
     }
+}
+
 
     /**
      * Display the specified resource.
@@ -57,9 +65,9 @@ class RecordController extends Controller
      */
     public function show($id)
     {
-        //
+        $record = Records::findOrFail($id);
+        return response()->file(storage_path('app/public/records/' . $record->file_path));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
