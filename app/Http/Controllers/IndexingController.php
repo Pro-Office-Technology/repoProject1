@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Records;
+use App\Models\indexing;
 use App\Models\products;
 
-class RecordController extends Controller
+class IndexingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class RecordController extends Controller
      */
     public function index()
     {
-        $records = Records::all();
+        $indexing= indexing::all();
         $products = products::pluck('name', 'id');
-        return view('records.index', compact('products'), compact('records'));
+        return view('indexing.index', compact('products'), compact('indexing'));
     }
 
     /**
@@ -46,7 +46,7 @@ class RecordController extends Controller
         $fileName = time() . '_' . $originalFileName;
         $request->file('pdf_file')->storeAs('public/records', $fileName);
 
-        $record = Records::create([
+        $record = indexing::create([
             'file_path' => $fileName,
         ]);
 
@@ -65,7 +65,7 @@ class RecordController extends Controller
      */
     public function show($id)
     {
-        $record = Records::findOrFail($id);
+        $record = indexing::findOrFail($id);
         return response()->file(storage_path('app/public/records/' . $record->file_path));
     }
     /**

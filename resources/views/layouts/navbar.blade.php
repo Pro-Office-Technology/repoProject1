@@ -3,9 +3,9 @@
         <!-- Elite Able logo -->
         <a href="dashboard" class="b-brand">
             <div class="b-bg">
-                E
+                C
             </div>
-            <span class="b-title">Elite Able</span>
+            <span class="b-title">Cloud Indexing</span>
         </a>
     </div>
     <div class="collapse navbar-collapse">
@@ -42,6 +42,7 @@
                             <br>
                             <small>{{ auth()->user()->level }}</small>
                         </div>
+
                         <ul class="pro-body">
                             <!-- Dropdown items -->
                             <li><a href="#!" class="dropdown-item"><i class="feather icon-settings"></i> Settings</a></li>

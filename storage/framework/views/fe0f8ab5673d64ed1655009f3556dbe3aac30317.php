@@ -55,6 +55,7 @@
     <script src="../assets/js/vendor-all.min.js"></script>
     <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/js/pcoded.min.js"></script>
+    
     <!-- prism Js -->
     <script src="../assets/plugins/prism/js/prism.min.js"></script>
 
@@ -62,6 +63,7 @@
     <script type="text/javascript">
         // Collapse menu and other scripts...
     </script>
+
 </body>
 </html>
 <?php /**PATH C:\laragon\www\contoh\resources\views/layouts/app.blade.php ENDPATH**/ ?>

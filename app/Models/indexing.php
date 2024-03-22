@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Records extends Model
+class indexing extends Model
 {
     use HasFactory;
 
-    protected $table = 'records';
+    protected $table = 'indexing';
 
     protected $fillable = [
         'file_path',

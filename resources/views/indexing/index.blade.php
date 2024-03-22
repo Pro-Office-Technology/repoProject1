@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col"></div>
             <div class="col text-center">
-                <span class="font-weight-bold" style="font-size: 24px; color: black;">Record Type</span>
+                <span class="font-weight-bold" style="font-size: 24px; color: black;">Indexing</span>
             </div>
             <div class="col"></div>
         </div>
@@ -25,10 +25,10 @@
                         {{ session('success') }}
                     </div>
                     <div style="height: 50vh; overflow-y: scroll;">
-                        <iframe src="{{ route('records.show', session('recordId')) }}" width="100%" height="100%" frameborder="0"></iframe>
+                        <iframe src="{{ route('indexing.show', session('recordId')) }}" width="100%" height="100%" frameborder="0"></iframe>
                     </div>
                 @else
-                    <form action="{{ route('records.index1') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('indexing.index1') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="input-group mb-3">
                             <input type="file" name="pdf_file" class="form-control">

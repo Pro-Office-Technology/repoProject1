@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\RecordController;
+use App\Http\Controllers\IndexingController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RegisterController;
 
 
 Route::get('/', function () {
@@ -41,12 +42,16 @@ Route::middleware('auth')->group(function () {
         Route::get('delete/{id}', [ProductController::class, 'delete'])->name('delete');
         });
 
-    Route::group(['prefix' => 'records', 'as' => 'records.'], function () {
-        Route::get('/', [RecordController::class, 'index'])->name('index1');
-        Route::post('/', [RecordController::class, 'store']);
-        Route::get('/{id}', [RecordController::class, 'show'])->name('show');
+    Route::group(['prefix' => 'indexing', 'as' => 'indexing.'], function () {
+        Route::get('/', [IndexingController::class, 'index'])->name('index1');
+        Route::post('/', [IndexingController::class, 'store']);
+        Route::get('/{id}', [IndexingController::class, 'show'])->name('show');
 
-
+    });
+    Route::group(['prefix' => 'register1', 'as' => 'register1.'], function () {
+         Route::get('/', [RegisterController::class, 'index'])->name('index');
+         Route::get('add', [RegisterController::class, 'add'])->name('add');
         });
 
 });
+

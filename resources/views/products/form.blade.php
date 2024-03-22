@@ -30,7 +30,6 @@
                                 <option value="" disabled selected>Please select type</option>
                                 <option value="String" {{ isset($product) && $product->type == 'String' ? 'selected' : '' }}>String</option>
                                 <option value="Date" {{ isset($product) && $product->type == 'Date' ? 'selected' : '' }}>Date</option>
-                                <option value="Float" {{ isset($product) && $product->type == 'Float' ? 'selected' : '' }}>Float</option>
                             </select>
                         </div>
                         <div class="form-group" id="lengthField" style="display: none;">

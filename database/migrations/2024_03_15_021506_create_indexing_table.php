@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up()
 {
-    Schema::create('records', function (Blueprint $table) {
+    Schema::create('indexing', function (Blueprint $table) {
         $table->id();
         $table->string('file_path');
         $table->timestamps();
@@ -22,6 +22,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('records');
+        Schema::dropIfExists('indexing');
     }
 };

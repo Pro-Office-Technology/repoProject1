@@ -11,7 +11,7 @@ return new class extends Migration
     Schema::create('products', function (Blueprint $table) {
         $table->id();
         $table->string('name')->nullable();
-        $table->enum('type', ['string', 'date', 'float'])->nullable();
+        $table->enum('type', ['string', 'date',])->nullable();
         $table->unsignedInteger('length')->nullable();
         $table->timestamps();
     });
