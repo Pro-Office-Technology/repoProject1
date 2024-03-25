@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\register;
+use App\Models\products;
+use Illuminate\Support\Facades\File;
+
 class RegisterController extends Controller
 {
     /**
@@ -14,45 +17,45 @@ class RegisterController extends Controller
     public function index()
     {
 
-        return view('register/index');
-    }
+        $register = register::get();
+        $products = products::pluck('name', 'id');
+        return view('register/index', ['data' => $register], ['products' => $products]);
 
+    }
 
     public function add()
     {
         return view('register.add');
     }
-    public function save(Request $request)
-    {
-        $data = [
-            'filename' => $request->filename,
-            'description' => $request->description,
 
-        ];
-        register::create($data);
 
-        return redirect()->route('register.index');
-    }
+    public function store(Request $request){
 
-    public function update($id, Request $request)
-    {
-        $data = [
+    $data = [
+        'filename' => $request->filename,
+        'description' => $request->description,
+    ];
 
-            'filename' => $request->filename,
-            'description' => $request->description,
+    $filename = $request->filename;
+    $path = storage_path('app/public/' . $filename);
+    File::makeDirectory($path);
 
-        ];
-
-        register::find($id)->update($data);
-
-        return redirect()->route('register.index');
-    }
+    register::create($data);
+    return redirect()->route('register1.index')->with('success', 'Folder and Record created successfully!');
+}
 
     public function delete($id)
     {
-        register::find($id)->delete();
+        $record = register::find($id);
 
-        return redirect()->route('register.index');
+
+        $path = storage_path('app/public/' . $record->filename);
+        File::deleteDirectory($path);
+
+        $record->delete();
+
+        return redirect()->route('register1.index')->with('success', 'Record and folder deleted successfully!');
     }
+
 
 }

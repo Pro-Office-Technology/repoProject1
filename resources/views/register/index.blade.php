@@ -1,45 +1,108 @@
 @extends('layouts.app')
 
 @section('title', 'Record Type')
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <body>
-            <div class="row">
-                <div class="col-sm-12 text-center">
-                    <h5 style="font-size: 2em; font-weight: bold;">RECORD TYPE</h5>
+
+@section('content')
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <h5 style="font-size: 2em; font-weight: bold;">RECORD TYPE</h5>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="float-right">
+                        <a href="{{ route('register1.add') }}" class="btn btn-success">Add</a>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="float-right">
-                                <a href="{{ route('register1.add') }}" class="btn btn-success">Add</a>
-                                <button class="btn btn-danger">Delete</button>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <div class="dt-responsive table-responsive">
-                                <table id="basic-key-table" class="table table-striped table-bordered nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th>Record Name</th>
-                                            <th>Description</th>
-                                        </tr>
-                                    </thead>
-                                    <!-- Add table body content here -->
-                                </table>
-                            </div>
-                        </div>
+                <div class="card-body">
+                    <div class="dt-responsive table-responsive">
+                        <table id="basic-key-table" class="table table-striped table-bordered nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Record Name</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($data as $record)
+                                    <tr>
+                                        <td>{{ $record['filename'] }}</td>
+                                        <td>{{ $record['description'] }}</td>
+                                        <td>
+                                            <button class="btn btn-primary" onclick="openModal('{{ $record->id }}')">Choose Index Field To Use</button>
+                                            <a href="{{ route('register1.delete', $record->id) }}" class="btn btn-danger">Delete</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+
+    <div class="modal" id="myModal">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Choose Index Field To Use</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <!-- Add checkboxes for index fields -->
+                        @foreach($products as $id => $name)
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="{{ $id }}" id="indexField{{ $id }}">
+                            <label class="form-check-label" for="indexField{{ $id }}">
+                              {{ $name }}
+                            </label>
+                          </div>
+                        @endforeach
+                </div>
+
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="saveSelection()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        function openModal(recordId) {
+            // Show the modal
+            $('#myModal').modal('show');
+            // Optionally, you can perform additional actions when opening the modal
+            console.log('Modal opened for record ID: ' + recordId);
+        }
+    </script>
 
  <!-- Required Js -->
  <script src="../assets/js/vendor-all.min.js"></script>

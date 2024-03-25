@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('register', function (Blueprint $table) {
             $table->id();
-            $table->string('filename')->unique();
+            $table->string('filename')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
         });

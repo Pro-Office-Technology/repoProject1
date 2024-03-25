@@ -51,6 +51,10 @@ Route::middleware('auth')->group(function () {
     Route::group(['prefix' => 'register1', 'as' => 'register1.'], function () {
          Route::get('/', [RegisterController::class, 'index'])->name('index');
          Route::get('add', [RegisterController::class, 'add'])->name('add');
+         Route::post('add', [RegisterController::class,'store'])->name('store');
+         Route::get('/show', [RegisterController::class,'show'])->name('show');
+         Route::get('delete/{id}', [RegisterController::class, 'delete'])->name('delete');
+
         });
 
 });
