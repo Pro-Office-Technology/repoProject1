@@ -3,8 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexingController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\IndexFieldController;
+use App\Http\Controllers\RecordTypeController;
 
 
 Route::get('/', function () {
@@ -33,13 +33,13 @@ Route::middleware('auth')->group(function () {
 
 
 
-    Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
-        Route::get('/', [ProductController::class, 'index'])->name('index');
-        Route::get('add', [ProductController::class, 'add'])->name('add');
-        Route::post('add', [ProductController::class, 'save'])->name('save');
-        Route::get('edit/{id}', [ProductController::class, 'edit'])->name('edit');
-        Route::post('edit/{id}', [ProductController::class, 'update'])->name('update');
-        Route::get('delete/{id}', [ProductController::class, 'delete'])->name('delete');
+    Route::group(['prefix' => 'indexfield', 'as' => 'indexfield.'], function () {
+        Route::get('/', [IndexFieldController::class, 'index'])->name('index');
+        Route::get('add', [IndexFieldController::class, 'add'])->name('add');
+        Route::post('add', [IndexFieldController::class, 'save'])->name('save');
+        Route::get('edit/{id}', [IndexFieldController::class, 'edit'])->name('edit');
+        Route::post('edit/{id}', [IndexFieldController::class, 'update'])->name('update');
+        Route::get('delete/{id}', [IndexFieldController::class, 'delete'])->name('delete');
         });
 
     Route::group(['prefix' => 'indexing', 'as' => 'indexing.'], function () {
@@ -49,11 +49,11 @@ Route::middleware('auth')->group(function () {
 
     });
     Route::group(['prefix' => 'register1', 'as' => 'register1.'], function () {
-         Route::get('/', [RegisterController::class, 'index'])->name('index');
-         Route::get('add', [RegisterController::class, 'add'])->name('add');
-         Route::post('add', [RegisterController::class,'store'])->name('store');
-         Route::get('/show', [RegisterController::class,'show'])->name('show');
-         Route::get('delete/{id}', [RegisterController::class, 'delete'])->name('delete');
+         Route::get('/', [RecordTypeController::class, 'index'])->name('index');
+         Route::get('add', [RecordTypeController::class, 'add'])->name('add');
+         Route::post('add', [RecordTypeController::class,'store'])->name('store');
+         Route::get('/show', [RecordTypeController::class,'show'])->name('show');
+         Route::get('delete/{id}', [RecordTypeController::class, 'delete'])->name('delete');
 
         });
 

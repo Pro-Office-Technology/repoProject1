@@ -53,7 +53,7 @@
                                 <td>
                                     <select class="form-control indexField">
                                         <option value="" disabled selected>Please choose index field to use</option>
-                                        @foreach($products as $id => $name)
+                                        @foreach($indexfield as $id => $name)
                                             <option value="{{ $id }}">{{ $name }}</option>
                                         @endforeach
                                     </select>

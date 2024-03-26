@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\indexing;
-use App\Models\products;
+use App\Models\indexfield;
 
 class IndexingController extends Controller
 {
@@ -16,8 +16,8 @@ class IndexingController extends Controller
     public function index()
     {
         $indexing= indexing::all();
-        $products = products::pluck('name', 'id');
-        return view('indexing.index', compact('products'), compact('indexing'));
+        $indexfield = indexfield::pluck('name', 'id');
+        return view('indexing.index', compact('indexfield'), compact('indexing'));
     }
 
     /**

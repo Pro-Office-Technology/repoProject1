@@ -23,7 +23,7 @@
                     <label>Other</label>
                 </li>
                 <li data-username="Index Field" class="nav-item">
-                    <a href="{{ route('products.index') }}" class="nav-link">
+                    <a href="{{ route('indexfield.index') }}" class="nav-link">
                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
                         <span class="pcoded-mtext">Index Field</span>
                     </a>

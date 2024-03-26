@@ -23,7 +23,7 @@
                     <label>Other</label>
                 </li>
                 <li data-username="Index Field" class="nav-item">
-                    <a href="<?php echo e(route('products.index')); ?>" class="nav-link">
+                    <a href="<?php echo e(route('indexfield.index')); ?>" class="nav-link">
                         <span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
                         <span class="pcoded-mtext">Index Field</span>
                     </a>
