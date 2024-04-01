@@ -2,6 +2,8 @@
 
 @section('title', 'Record Type')
 
+@section('content')
+
 <div class="container">
     <br>
     <br>
@@ -18,7 +20,7 @@
                     <h6 class="m-0 font-weight-bold text-primary" style="font-size: 24px;">Record Type Form</h6>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('register1.store') }}" method="POST">
+                    <form action="{{ route('recordtype1.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label for="filename">File Name</label>
@@ -64,7 +66,7 @@
                                     <!-- Modal footer -->
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" onclick="saveSelection()">Save</button>
+                                        {{-- <button type="button" class="btn btn-primary" onclick="saveSelection()">Save</button> --}}
                                     </div>
                                 </div>
                             </div>
@@ -89,3 +91,4 @@
 
 
 </div>
+

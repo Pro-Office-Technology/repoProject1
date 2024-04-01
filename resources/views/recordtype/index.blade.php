@@ -21,7 +21,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="float-right">
-                        <a href="{{ route('register1.add') }}" class="btn btn-success">Add</a>
+                        <a href="{{ route('recordtype1.add') }}" class="btn btn-success">Add Record</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -35,13 +35,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($data as $record)
+                                @foreach($data as $recordtype)
                                     <tr>
-                                        <td>{{ $record['filename'] }}</td>
-                                        <td>{{ $record['description'] }}</td>
+                                        <td>{{ $recordtype['filename'] }}</td>
+                                        <td>{{ $recordtype['description'] }}</td>
                                         <td>
-                                            <button class="btn btn-primary">Edit</button>
-                                            <a href="{{ route('register1.delete', $record->id) }}" class="btn btn-danger">Delete</a>
+                                            <a href="{{ route('recordtype1.edit', $recordtype->id) }}" class="btn btn-primary">Edit</a>
+                                            <a href="{{ route('recordtype1.delete', $recordtype->id) }}" class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

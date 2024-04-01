@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\recordtype;
 class indexfield extends Model
 {
     use HasFactory;
@@ -17,4 +17,5 @@ class indexfield extends Model
         'length',
 
     ];
+
 }

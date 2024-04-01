@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\register;
+use App\Models\recordtype;
 use App\Models\indexfield;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
@@ -20,16 +20,17 @@ class RecordTypeController extends Controller
     public function index()
     {
 
-        $register = register::get();
+        $recordtype = recordtype::get();
         $indexfield = indexfield::pluck('name', 'id');
-        return view('register/index', ['data' => $register], ['indexfield' => $indexfield]);
+
+        return view('recordtype/index', ['data' => $recordtype], ['indexfield' => $indexfield]);
 
     }
 
     public function add()
     {
         $indexfield = indexfield::pluck('name', 'id');
-        return view('register.add',['indexfield' => $indexfield]);
+        return view('recordtype.add',['indexfield' => $indexfield]);
     }
 
 
@@ -45,24 +46,24 @@ class RecordTypeController extends Controller
         $filename = $validatedData['filename'];
         $description = $validatedData['description'];
 
-        $path = storage_path('app/public/' . $filename);
+        $path = storage_path('app/public/input/' . $filename);
         File::makeDirectory($path);
 
-        // Create the Register record
-        $register = register::create([
+        // Create the recordtype record
+        $recordtype = recordtype::create([
             'filename' => $filename,
             'description' => $description,
         ]);
 
-        // Get the ID of the created Register record
-        $tableId = $register->id;
+        // Get the ID of the created recordtype record
+        $tableId = $recordtype->id;
 
         // Construct the table name using the ID
         $tableName = 'record_' . $tableId;
 
         // Create the table
         Schema::create($tableName, function (Blueprint $table) use ($description, $validatedData) {
-            $table->id();
+            $table->id('id');
             $table->string('filename')->nullable();
             $table->string('description')->nullable();
 
@@ -77,29 +78,74 @@ class RecordTypeController extends Controller
 
         // Update the 'filename' and 'description' columns with the provided values
         DB::table($tableName)->insert([
+            'id' => $tableId,
             'filename' => $filename,
             'description' => $description,
         ]);
 
-        return redirect()->route('register1.index')->with('success', 'Table created successfully!');
+        return redirect()->route('recordtype1.index')->with('success', 'Table created successfully!');
     }
 
 
+            public function delete($id)
+        {
+            $recordtype = recordtype::find($id);
 
+            // Construct the table name using the ID
+            $tableName = 'record_' . $recordtype->id;
 
+            // Drop the table if it exists
+            Schema::dropIfExists($tableName);
 
-    public function delete($id)
-    {
-        $record = register::find($id);
+            // Delete the folder
+            $path = storage_path('app/public/input/' . $recordtype->filename);
+            File::deleteDirectory($path);
 
+            // Delete the recordtype
+            $recordtype->delete();
 
-        $path = storage_path('app/public/' . $record->filename);
-        File::deleteDirectory($path);
+            return redirect()->route('recordtype1.index')->with('success', 'Record and folder deleted successfully!');
+        }
 
-        $record->delete();
+            public function edit($id)
+            {
+                $recordtype = recordtype::find($id);
+                return view('recordtype.edit', compact('recordtype'));
+            }
 
-        return redirect()->route('register1.index')->with('success', 'Record and folder deleted successfully!');
-    }
+            public function update(Request $request, $id)
+            {
+                // Validate the request data
+                $validatedData = $request->validate([
+                    'filename' => 'required|string',
+                    'description' => 'nullable|string',
+                ]);
 
+                // Find the recordtype by ID
+                $recordtype = recordtype::findOrFail($id);
 
+                // Delete the old folder
+                $oldPath = storage_path('app/public/input/' . $recordtype->filename);
+                File::deleteDirectory($oldPath);
+
+                // Update the filename and description fields
+                $recordtype->filename = $validatedData['filename'];
+                $recordtype->description = $validatedData['description'];
+                $recordtype->save();
+
+                // Create new folder with the updated filename
+                $newPath = storage_path('app/public/input/' . $validatedData['filename']);
+                File::makeDirectory($newPath);
+
+                // Update the corresponding record in the dynamically created table
+                $tableName = 'record_' . $recordtype->id;
+                if (Schema::hasTable($tableName)) {
+                    DB::table($tableName)->update([
+                        'filename' => $validatedData['filename'],
+                        'description' => $validatedData['description'],
+                    ]);
+                }
+
+                return redirect()->route('recordtype1.index')->with('success', 'Record type updated successfully!');
+            }
 }

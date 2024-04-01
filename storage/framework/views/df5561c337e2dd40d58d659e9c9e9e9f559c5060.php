@@ -29,28 +29,15 @@
                     </a>
                 </li>
                 <!-- Record Type -->
-                <li data-username="Record Type" class="nav-item pcoded-hasmenu">
-                    <a href="#" class="nav-link">
+                  <li data-username="Register" class="nav-item pcoded-hasmenu">
+                    <a href="<?php echo e(route('recordtype1.index')); ?>" class="nav-link">
                       <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
                       <span class="pcoded-mtext">Record Type</span>
-                    </a>
-
-                <li data-username="List" class="nav-item pcoded-hasmenu">
-                    <a href="#" class="nav-link">
-                      <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
-                      <span class="pcoded-mtext">List</span>
-                    </a>
-                  </li>
-
-                  <li data-username="Register" class="nav-item pcoded-hasmenu">
-                    <a href="<?php echo e(route('register1.index')); ?>" class="nav-link">
-                      <span class="pcoded-micon"><i class="feather icon-menu"></i></span>
-                      <span class="pcoded-mtext">Register</span>
                     </a>
                   </li>
                 <!-- Indexing -->
                 <li data-username="Indexing" class="nav-item">
-                    <a href="<?php echo e(route('indexing.index1')); ?>" class="nav-link">
+                    <a href="<?php echo e(route('indexing.index')); ?>" class="nav-link">
                         <span class="pcoded-micon"><i class="feather icon-file-minus"></i></span>
                         <span class="pcoded-mtext">Indexing</span>
                     </a>

@@ -41,19 +41,21 @@ Route::middleware('auth')->group(function () {
         Route::post('edit/{id}', [IndexFieldController::class, 'update'])->name('update');
         Route::get('delete/{id}', [IndexFieldController::class, 'delete'])->name('delete');
         });
+        
+        Route::group(['prefix' => 'indexing', 'as' => 'indexing.'], function () {
+            Route::get('/index', [IndexingController::class, 'index'])->name('index');
+            Route::get('/listpdf/{filename}', [IndexingController::class, 'listPDF'])->name('listpdf');
+            Route::get('/open-pdf/{filename}/{pdf}', [IndexingController::class, 'openPDF'])->name('open.pdf');
+        });
 
-    Route::group(['prefix' => 'indexing', 'as' => 'indexing.'], function () {
-        Route::get('/', [IndexingController::class, 'index'])->name('index1');
-        Route::post('/', [IndexingController::class, 'store']);
-        Route::get('/{id}', [IndexingController::class, 'show'])->name('show');
-
-    });
-    Route::group(['prefix' => 'register1', 'as' => 'register1.'], function () {
+    Route::group(['prefix' => 'recordtype1', 'as' => 'recordtype1.'], function () {
          Route::get('/', [RecordTypeController::class, 'index'])->name('index');
          Route::get('add', [RecordTypeController::class, 'add'])->name('add');
          Route::post('add', [RecordTypeController::class,'store'])->name('store');
          Route::get('/show', [RecordTypeController::class,'show'])->name('show');
          Route::get('delete/{id}', [RecordTypeController::class, 'delete'])->name('delete');
+         Route::get('edit/{id}', [RecordTypeController::class, 'edit'])->name('edit');
+         Route::match(['post', 'put'], 'update/{record_id}', [RecordTypeController::class, 'update'])->name('update');
 
         });
 

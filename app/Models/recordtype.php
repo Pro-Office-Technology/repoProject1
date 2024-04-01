@@ -4,15 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\indexfield;
 
-class register extends Model
+class recordtype extends Model
 {
     use HasFactory;
 
-    protected $table = 'register';
+    protected $table = 'recordtype';
 
     protected $fillable = [
         'filename',
         'description',
     ];
+
+    public function indexfields()
+    {
+        return $this->belongsToMany(indexfield::class);
+    }
 }
+
