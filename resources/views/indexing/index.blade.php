@@ -15,11 +15,11 @@
             @foreach($recordtypes as $recordtype)
                 <div class="col-md-4">
                     <div class="card mb-4">
-                        <a href="{{ route('indexing.listpdf', $recordtype->filename) }}">
+                        <a href="{{ route('recordtype1.listpdf', $recordtype->filename) }}">
                             <img class="card-img-top" src="{{ asset('images/f.jpg') }}" alt="Card image cap">
                         </a>
                         <div class="card-body">
-                            <a href="{{ route('indexing.listpdf', $recordtype->filename) }}" class="card-title">{{ $recordtype->filename }}</a>
+                            <a href="{{ route('recordtype1.listpdf', $recordtype->filename) }}" class="card-title">{{ $recordtype->filename }}</a>
                         </div>
                     </div>
                 </div>

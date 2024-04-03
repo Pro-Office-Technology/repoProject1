@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class RecordTypeController extends Controller
 {
@@ -148,4 +149,54 @@ class RecordTypeController extends Controller
 
                 return redirect()->route('recordtype1.index')->with('success', 'Record type updated successfully!');
             }
+
+
+            public function listPDF($filename)
+            {
+                $pathToDirectory = storage_path('app/public/input/' . $filename);
+
+                // Check if the directory exists
+                if (!File::exists($pathToDirectory)) {
+                    abort(404);
+                }
+
+                // Get all PDF files in the directory
+                $pdfFiles = array_filter(scandir($pathToDirectory), function ($file) {
+                    return pathinfo($file, PATHINFO_EXTENSION) === 'pdf';
+                });
+
+                return view('recordtype.listpdf', [
+                    'folderName' => $filename,
+                    'pdfFiles' => $pdfFiles,
+                ]);
+
+            }
+
+            public function fillData($filename, $pdf)
+            {
+                $indexfields = indexfield::all();
+
+                $pathToFile = storage_path('app/public/input/' . $filename . '/' . $pdf);
+
+                if (File::exists($pathToFile)) {
+
+                return view('recordtype.filldata', compact('filename', 'indexfields', 'pdf'));
+                }
+            }
+
+
+
+
+            // public function fillDataStore(Request $request, $filename)
+            // {
+            //     // Validate the request data
+            //     $validatedData = $request->validate([
+            //         // Define validation rules for each index field
+            //     ]);
+
+            //     // Process the submitted data and save it to the database
+
+            //     return redirect()->route('recordtype1.index')->with('success', 'Data filled successfully!');
+            // }
+
 }

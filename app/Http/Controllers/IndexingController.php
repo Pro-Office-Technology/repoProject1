@@ -34,19 +34,15 @@ class IndexingController extends Controller
         ]);
     }
 
-    public function openPDF($filename, $pdf)
+    public function showpdf($filename, $pdf)
 {
     $pathToFile = storage_path('app/public/input/' . $filename . '/' . $pdf);
 
     if (File::exists($pathToFile)) {
-        return view('filldata', [
-            'pdfPath' => asset('storage/input/' . $filename . '/' . $pdf),
-        ]);
+        return response()->file($pathToFile);
     } else {
         abort(404);
     }
 }
 
 }
-
-

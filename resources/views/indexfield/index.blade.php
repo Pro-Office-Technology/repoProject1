@@ -26,9 +26,9 @@
             </div>
             <div class="col-md-6">
                 <div class="input-group mb-3">
-                    <input type="text" id="searchInput" class="form-control" placeholder="Search...">
+                    {{-- <input type="text" id="searchInput" class="form-control" placeholder="Search..."> --}}
                     <div class="input-group-append">
-                        <span class="input-group-text"><i class="feather icon-search"></i></span>
+                        {{-- <span class="input-group-text"><i class="feather icon-search"></i></span> --}}
                     </div>
                 </div>
             </div>
