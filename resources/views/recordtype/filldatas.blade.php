@@ -1,15 +1,20 @@
 @extends('layouts.app')
 
 @section('title', 'Fill Data')
-
+<br>
+<br>
 @section('content')
+<br>
+<br>
+<br>
+<br>
+<br>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <h1>Selected PDF from {{ $filename }} Folder</h1>
                 @if(isset($pdf))
-                    <iframe src="{{ asset('storage/input/' . $filename . '/' . $pdf) }}" style="width:50%; height:600px;"></iframe>
-                    @dump($pdf)
+                    <iframe src="{{ asset('storage/input/' . $filename . '/' . $pdf) }}" style="width:100%; height:600px;"></iframe>
                 @else
                     <p>No PDF selected</p>
                 @endif
@@ -32,6 +37,6 @@
             </div>
         </div>
     </div>
+@endsection
 
-
-       {{-- <form action="{{ route('recordtype1.filldata.store', ['filename' => $filename]) }}" method="post"> --}}
+      

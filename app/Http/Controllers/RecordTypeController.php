@@ -28,6 +28,14 @@ class RecordTypeController extends Controller
 
     }
 
+    public function dd()
+    {
+
+
+        return view('recordtype.dd');
+
+    }
+
     public function add()
     {
         $indexfield = indexfield::pluck('name', 'id');
@@ -172,7 +180,7 @@ class RecordTypeController extends Controller
 
             }
 
-            public function fillData($filename, $pdf)
+            public function fillDatas($filename, $pdf)
             {
                 $indexfields = indexfield::all();
 
@@ -180,7 +188,7 @@ class RecordTypeController extends Controller
 
                 if (File::exists($pathToFile)) {
 
-                return view('recordtype.filldata', compact('filename', 'indexfields', 'pdf'));
+                return view('recordtype.filldatas', compact('filename', 'indexfields', 'pdf'));
                 }
             }
 

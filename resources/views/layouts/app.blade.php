@@ -18,13 +18,13 @@
     <meta name="author" content="" />
 
     <!-- Favicon icon -->
-    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="{{ asset('assets/images/favicon.ico') }}" type="image/x-icon">
     <!-- fontawesome icon -->
-    <link rel="stylesheet" href="../assets/fonts/fontawesome/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/fonts/fontawesome/css/fontawesome-all.min.css') }}">
     <!-- animation css -->
-    <link rel="stylesheet" href="../assets/plugins/animation/css/animate.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/animation/css/animate.min.css') }}">
     <!-- vendor css -->
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 </head>
 
 <body class="layout-6">
@@ -44,7 +44,7 @@
     <!-- [ Navbar ] start -->
     @include('layouts.navbar')
     <!-- [ Navbar ] end -->
-
+    @yield('content')
     <!-- [ Main Content ] start -->
     <!-- [ Main Content ] start -->
 
@@ -52,14 +52,14 @@
     <!-- [ Main Content ] end -->
 
     <!-- Required Js -->
-    <script src="../assets/js/vendor-all.min.js"></script>
-    <script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="../assets/js/pcoded.min.js"></script>
-    
-    <!-- prism Js -->
-    <script src="../assets/plugins/prism/js/prism.min.js"></script>
+    <script src="{{ asset('assets/js/vendor-all.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/pcoded.min.js') }}"></script>
 
-    <script src="../assets/js/horizontal-menu.js"></script>
+    <!-- prism Js -->
+    <script src="{{ asset('assets/plugins/prism/js/prism.min.js') }}"></script>
+
+    <script src="{{ asset('assets/js/horizontal-menu.js') }}"></script>
     <script type="text/javascript">
         // Collapse menu and other scripts...
     </script>

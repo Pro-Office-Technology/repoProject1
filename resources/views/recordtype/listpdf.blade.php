@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('title', 'List PDF Files')
-
+<br>
+<br>
 @section('content')
     <br>
     <br>
@@ -23,7 +24,7 @@
                     <tr>
                         <td>{{ $pdfFile }}</td>
                         <td>
-                            <form action="{{ route('recordtype1.filldata', ['filename' => $folderName, 'pdf' => $pdfFile]) }}" method="GET">
+                            <form action="{{ route('recordtype1.filldatas', ['filename' => $folderName, 'pdf' => $pdfFile]) }}" method="GET">
                                 @csrf
                                 <button type="submit" class="btn btn-primary">Key in Data</button>
                             </form>
@@ -33,3 +34,5 @@
             </tbody>
         </table>
     </div>
+@endsection
+

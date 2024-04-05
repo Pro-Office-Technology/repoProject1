@@ -44,8 +44,8 @@ Route::middleware('auth')->group(function () {
 
         Route::group(['prefix' => 'indexing', 'as' => 'indexing.'], function () {
             Route::get('/index', [IndexingController::class, 'index'])->name('index');
-            Route::get('/listpdf/{filename}', [IndexingController::class, 'listPDF'])->name('listpdf'); // Define the listpdf route here
-            Route::get('/showpdf/{filename}/{pdf}', [IndexingController::class, 'showpdf'])->name('showpdf');
+            // Route::get('/listpdf/{filename}', [IndexingController::class, 'listPDF'])->name('listpdf'); // Define the listpdf route here
+            // Route::get('/showpdf/{filename}/{pdf}', [IndexingController::class, 'showpdf'])->name('showpdf');
         });
 
     Route::group(['prefix' => 'recordtype1', 'as' => 'recordtype1.'], function () {
@@ -57,7 +57,8 @@ Route::middleware('auth')->group(function () {
          Route::get('edit/{id}', [RecordTypeController::class, 'edit'])->name('edit');
          Route::get('/listpdf/{filename}', [RecordTypeController::class, 'listPDF'])->name('listpdf');
          Route::match(['post', 'put'], 'update/{record_id}', [RecordTypeController::class, 'update'])->name('update');
-         Route::get('/filldata/{filename}/{pdf?}', [RecordTypeController::class, 'fillData'])->name('filldata');
+         Route::get('filldatas/{filename}/{pdf?}', [RecordTypeController::class, 'fillDatas'])->name('filldatas');
+        Route::get('dd', [RecordTypeController::class, 'dd'])->name('dd');
         //  Route::post('/filldata/{filename}', [RecordTypeController::class, 'fillDataStore'])->name('filldata.store');
 
 
